@@ -6,11 +6,12 @@ Listes des choses a faire:
 
 # GUI
 liste des pages à faire : 
-- page de login
-- page d'acceuil
+- page de login (V1)
+- page d'acceuil (V1)
 - pan admin
 - page de chaque livre (avec des infos, )
-- création de compte
+- création de compte (V1)
 
 pour les pages : 
 - 1 FXML/pages mais uniquement une seule scene (a faire pour avoir un seul affichage)
+- affichages des messages d'erreurs (fait à partir de la V2?)
