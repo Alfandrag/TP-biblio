@@ -1,0 +1,20 @@
+Liste des Tables et de leurs attributs:
+
+1- Table User: interne: ID (clef), Nom, Prénom, Mdp, Mail    Externe: role (one to many)
+2- Table catégorie: interne: ID de la cat (clef), type de perm (admin, user), durée d'empreint max, nb d'empreint max 
+
+6- Table log empreint: Id du log(clef),Id livre, Id user, Id édition, date de retour
+7- Table log_ban : Id du ban, id user, nature changement
+
+3- Table Autheur: Interne: ID (clef), nom, prenom, date de naissance       Externe : 
+4- Table édition: Interne ISBN (clef), nom, année d'édition, nombre d'édition possédée    Externe: Id du livre en question
+5- Table oeuvre: Interne: ID (clef), titre, année de première publication          Externe: mot clefs
+8- Table des mots clefs : Id, mot clef
+
+
+Plus : les liens des tables many to many:
+
+entre 8 et 5
+entre 3 et 5 
+
+
