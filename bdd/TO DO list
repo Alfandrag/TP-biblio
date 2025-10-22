@@ -4,4 +4,13 @@ Listes des choses a faire:
  - gerer la gestion de la suppression d'un element (genre le livren l'auteur, l'user etc...)
 
 
- 
+# GUI
+liste des pages à faire : 
+- page de login
+- page d'acceuil
+- pan admin
+- page de chaque livre (avec des infos, )
+- création de compte
+
+pour les pages : 
+- 1 FXML/pages mais uniquement une seule scene (a faire pour avoir un seul affichage)
