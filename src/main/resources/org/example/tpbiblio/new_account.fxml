@@ -17,25 +17,25 @@
             <HBox prefHeight="30.0" prefWidth="600.0">
                <children>
                   <Label text="First Name : " />
-                  <TextField promptText="First Name" />
+                  <TextField prefHeight="26.0" prefWidth="180.0" promptText="First Name" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="600.0">
                <children>
                   <Label text="Last Name : " />
-                  <TextField promptText="Last Name" />
+                  <TextField prefHeight="26.0" prefWidth="180.0" promptText="Last Name" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="600.0">
                <children>
                   <Label text="Email : " />
-                  <TextField prefHeight="26.0" prefWidth="199.0" promptText="example@student-cs.test" />
+                  <TextField prefHeight="26.0" prefWidth="211.0" promptText="example@student-cs.test" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="200.0">
                <children>
                   <Label text="Password : " />
-                  <PasswordField promptText="Str0ng_Password" />
+                  <PasswordField prefHeight="26.0" prefWidth="185.0" promptText="Str0ng_Password" />
                </children>
             </HBox>
             <Button fx:id="create_account" mnemonicParsing="false" text="Créer" />
