@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tpbiblio.HelloController">
    <right>
       <ScrollBar orientation="VERTICAL" BorderPane.alignment="CENTER" />
    </right>
@@ -24,7 +24,7 @@
                   <Region prefHeight="100.0" prefWidth="9.0" />
                   <ChoiceBox prefWidth="150.0" />
                   <Region prefHeight="19.0" prefWidth="340.0" />
-                  <Button fx:id="profile_b" mnemonicParsing="false" prefHeight="30.0" prefWidth="88.0" text="Profile" />
+                  <Button fx:id="profile_b" mnemonicParsing="false" onAction="#profile_press" prefHeight="30.0" prefWidth="88.0" text="Profile" />
                </children>
             </HBox>
          </children>
