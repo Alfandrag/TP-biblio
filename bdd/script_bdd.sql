@@ -25,7 +25,7 @@ CREATE TABLE Users(
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    pssword VARCHAR(255) NOT NULL,
+    pssword VARCHAR(256) NOT NULL,
     cat INT,
     FOREIGN KEY (cat) REFERENCES Categories(id)
 )
@@ -94,6 +94,9 @@ CREATE TABLE Book_writer_link(
     FOREIGN KEY (writer_id) REFERENCES Writers(id)
 )
 
+CREATE USER 'Appli_biblio'@'localhost' IDENTIFIED BY 'bestappli';
+GRANT ALL PRIVILEGES ON Bibliotheque.* TO 'Appli_biblio'@'localhost';
+FLUSH PRIVILEGES;
 -- ========= 2) Test de remplissage =========
 
 USE Bibliotheque;
@@ -110,10 +113,10 @@ INSERT INTO Categories (name, loan_time, loan_number) VALUES
 -- 2) Utilisateurs
 -- =========================
 INSERT INTO Users (first_name, last_name, email, password, cat) VALUES
-('Alice', 'Durand', 'alice.durand@example.com', 'password123', 1),
-('Bob', 'Martin', 'bob.martin@example.com', 'password123', 1),
-('Claire', 'Dupuis', 'claire.dupuis@example.com', 'password123', 2),
-('David', 'Admin', 'david.admin@example.com', 'admin123', 3);
+('Alice', 'Durand', 'alice.durand@example.com', SHA2('password123',256), 1),
+('Bob', 'Martin', 'bob.martin@example.com', SHA2('password123',256), 1),
+('Claire', 'Dupuis', 'claire.dupuis@example.com', SHA2('password123',256), 2),
+('David', 'Admin', 'david.admin@example.com', SHA2('admin123',256), 3);
 
 -- =========================
 -- 3) Auteurs

@@ -7,6 +7,7 @@ module org.example.tpbiblio {
     requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens org.example.tpbiblio to javafx.fxml;
     exports org.example.tpbiblio;

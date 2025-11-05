@@ -22,7 +22,7 @@ public class HelloController {
             //Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
-            stage.setTitle("Profil");
+            stage.setTitle("Profile");
         } catch (Exception e) {
             e.printStackTrace();
         }
