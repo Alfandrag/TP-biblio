@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tpbiblio.NewAccountController">
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -17,28 +16,30 @@
             <HBox prefHeight="30.0" prefWidth="600.0">
                <children>
                   <Label text="First Name : " />
-                  <TextField prefHeight="26.0" prefWidth="180.0" promptText="First Name" />
+                  <TextField fx:id="first_name_input" prefHeight="26.0" prefWidth="180.0" promptText="First Name" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="600.0">
                <children>
                   <Label text="Last Name : " />
-                  <TextField prefHeight="26.0" prefWidth="180.0" promptText="Last Name" />
+                  <TextField fx:id="last_name_input" prefHeight="26.0" prefWidth="180.0" promptText="Last Name" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="600.0">
                <children>
                   <Label text="Email : " />
-                  <TextField prefHeight="26.0" prefWidth="211.0" promptText="example@student-cs.test" />
+                  <TextField fx:id="email_input" prefHeight="26.0" prefWidth="211.0" promptText="example@student-cs.test" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="200.0">
                <children>
                   <Label text="Password : " />
-                  <PasswordField prefHeight="26.0" prefWidth="185.0" promptText="Str0ng_Password" />
+                  <PasswordField fx:id="password_input" prefHeight="26.0" prefWidth="185.0" promptText="Str0ng_Password" />
                </children>
             </HBox>
-            <Button fx:id="create_account" mnemonicParsing="false" text="Créer" />
+            <Button fx:id="create_account" mnemonicParsing="false" onAction="#create_press" text="Créer" />
+            <Label fx:id="error" />
+            <Button fx:id="button_retour" mnemonicParsing="false" onAction="#return_press" text="Retour à la page de connexion" />
          </children>
       </VBox>
    </children>

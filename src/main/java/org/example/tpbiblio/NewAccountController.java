@@ -12,36 +12,37 @@ import javafx.stage.Stage;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ConnexionController {
+public class NewAccountController {
     @FXML
-    private TextField username_input;
-
+    private TextField first_name_input;
+    @FXML
+    private TextField last_name_input;
+    @FXML
+    private TextField email_input;
     @FXML
     private PasswordField password_input;
-
     @FXML
     private Label error;
 
     @FXML
-    protected void try_login(ActionEvent event) {
-        String email = username_input.getText();
+    private void create_press() {
+        String firstName = first_name_input.getText();
+        String lastName = last_name_input.getText();
+        String email = email_input.getText();
         String password = password_input.getText();
 
-        if (email.isEmpty() || password.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty()) {
             error.setText("Veillez remplir tous les champs");
             return;
         }
 
-        // on hash le mot de passe en sha-256
-
-        String hashed_password = hashing(password);
-
-        if (checkLogin(email, hashed_password)) {
+        if (Update_table(firstName, lastName, email, password)) {
             open_hello_page();
-        } else {
-            error.setText("Identifiants incorrects");
         }
     }
 
@@ -59,15 +60,20 @@ public class ConnexionController {
         }
     }
 
-    private boolean checkLogin(String email, String hashed_password) {
-        String sql = "SELECT * FROM Users WHERE email = ? AND pssword = ?";
-        try (Connection conn = DatabaseConnexion.getConnection();
-            PreparedStatement ppstmt = conn.prepareStatement(sql)) {
+    private boolean Update_table(String firstName, String lastName, String email, String hashed_password) {
+        String sql = "INSERT INTO Users (first_name, last_name, email, password, cat) VALUES (?, ?, ?, ?, ?)";
+        int defaut_cat = 1; // par défaut, est un étudiant
 
-            ppstmt.setString(1,email);
-            ppstmt.setString(2,hashed_password);
-            ResultSet rs = ppstmt.executeQuery();
-            return rs.next();
+        try (Connection conn = DatabaseConnexion.getConnection();
+             PreparedStatement ppstmt = conn.prepareStatement(sql)) {
+
+            ppstmt.setString(1,firstName);
+            ppstmt.setString(2,lastName);
+            ppstmt.setString(3,email);
+            ppstmt.setString(4,hashed_password);
+            ppstmt.setInt(5,defaut_cat);
+            ppstmt.executeUpdate();
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,7 +85,7 @@ public class ConnexionController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = (Stage) username_input.getScene().getWindow();
+            Stage stage = (Stage) first_name_input.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
             stage.setTitle("Profile");
@@ -89,16 +95,55 @@ public class ConnexionController {
     }
 
     @FXML
-    private void create_press() {
+    private void return_press() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("new_account.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("connexion.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = (Stage) username_input.getScene().getWindow();
+            Stage stage = (Stage) first_name_input.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-            stage.setTitle("Create Account");
+            stage.setTitle("Profile");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
