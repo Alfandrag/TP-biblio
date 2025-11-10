@@ -12,4 +12,6 @@ module org.example.tpbiblio {
 
     opens org.example.tpbiblio to javafx.fxml;
     exports org.example.tpbiblio;
+    exports org.example.tpbiblio.Get_SQL;
+    opens org.example.tpbiblio.Get_SQL to javafx.fxml;
 }

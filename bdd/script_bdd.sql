@@ -96,9 +96,9 @@ CREATE TABLE Book_writer_link(
     FOREIGN KEY (writer_id) REFERENCES Writers(id)
 );
 
---CREATE USER 'Appli_biblio'@'localhost' IDENTIFIED BY 'bestappli';
---GRANT ALL PRIVILEGES ON Bibliotheque.* TO 'Appli_biblio'@'localhost';
---FLUSH PRIVILEGES;
+CREATE USER 'Appli_biblio'@'localhost' IDENTIFIED BY 'bestappli';
+GRANT ALL PRIVILEGES ON Bibliotheque.* TO 'Appli_biblio'@'localhost';
+FLUSH PRIVILEGES;
 -- ========= 2) Test de remplissage =========
 
 USE Bibliotheque;
@@ -118,7 +118,7 @@ INSERT INTO Users (first_name, last_name, email, pssword, cat) VALUES
 ('Alice', 'Durand', 'alice.durand@example.com', SHA2('password123',256), 1),
 ('Bob', 'Martin', 'bob.martin@example.com', SHA2('password123',256), 1),
 ('Claire', 'Dupuis', 'claire.dupuis@example.com', SHA2('password123',256), 2),
-('David', 'Admin', 'david.admin@example.com', SHA2('admin123',256), 3);
+('David', 'Admin', 'david.admin@example.com', SHA2('admin',256), 3);
 
 -- =========================
 -- 3) Auteurs

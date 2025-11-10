@@ -1,13 +1,135 @@
 package org.example.tpbiblio;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.example.tpbiblio.Get_SQL.data_emprunt;
+import org.example.tpbiblio.entity.Book_loan;
+
+import java.sql.*;
+import java.util.List;
 
 public class ProfileController {
     @FXML
-    private Label welcomeText;
+    private Button home_button;
+    @FXML
+    private ChoiceBox selecteur;
+    @FXML
+    private TableView<Book_loan> Affichage_emprunt;
+    @FXML
+    private TableColumn<Book_loan,String> titleCol;
+    @FXML
+    private TableColumn<Book_loan, String> writerCol;
+    @FXML
+    private TableColumn<Book_loan, String> publisherCol;
+    @FXML
+    private TableColumn<Book_loan, String> loanDateCol;
+    @FXML
+    private TableColumn<Book_loan, String> returnDateCol;
+    @FXML
+    private TableColumn<Book_loan, String> statusCol;
+
+    private Connection connection;
+    private int user_ID;
+
+    public void setUserID(int userID) {
+        this.user_ID = userID;
+        loadProfile();
+    }
+
+    @FXML
+    private void home_press() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) home_button.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("Profile");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadProfile() {
+        data_emprunt dao = new data_emprunt();
+        List<Book_loan> book_loanList = dao.get_book_loan(user_ID);
+        ObservableList<Book_loan> observableList = FXCollections.observableArrayList(book_loanList);
+
+        // Lier les colonnes aux attributs de Book_loan
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        writerCol.setCellValueFactory(new PropertyValueFactory<>("auteur"));
+        publisherCol.setCellValueFactory(new PropertyValueFactory<>("editeur"));
+        loanDateCol.setCellValueFactory(new PropertyValueFactory<>("date_emprunt"));
+        returnDateCol.setCellValueFactory(new PropertyValueFactory<>("date_retour"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
+
+        Affichage_emprunt.setItems(observableList);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

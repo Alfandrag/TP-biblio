@@ -13,11 +13,20 @@ public class HelloController {
     @FXML
     private Label welcomeText;
 
+    private int userID;
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+
     @FXML
     protected void profile_press(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            ProfileController controller = fxmlLoader.getController();
+            controller.setUserID(userID);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             //Stage stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -26,5 +35,7 @@ public class HelloController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 }

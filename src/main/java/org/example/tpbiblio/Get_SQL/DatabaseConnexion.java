@@ -1,4 +1,4 @@
-package org.example.tpbiblio;
+package org.example.tpbiblio.Get_SQL;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;

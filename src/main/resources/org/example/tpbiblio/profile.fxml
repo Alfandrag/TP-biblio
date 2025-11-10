@@ -1,10 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tpbiblio.ProfileController">
-   <children>
-      <ProgressBar layoutX="219.0" layoutY="180.0" prefWidth="200.0" progress="0.0" />
-   </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tpbiblio.ProfileController">
+    <right>
+        <ScrollBar orientation="VERTICAL" BorderPane.alignment="CENTER" />
+    </right>
+    <top>
+        <VBox prefHeight="53.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+                <Region prefHeight="12.0" prefWidth="600.0" />
+                <HBox prefHeight="41.0" prefWidth="600.0">
+                    <children>
+                        <Region prefHeight="100.0" prefWidth="9.0" />
+                        <ChoiceBox prefWidth="150.0" />
+                        <Region prefHeight="19.0" prefWidth="340.0" />
+                        <Button fx:id="home_button" mnemonicParsing="false" onAction="#home_press" prefHeight="30.0" prefWidth="88.0" text="Home" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="584.0">
+                    <children>
+                  <TableView fx:id="Affichage_emprunt" prefHeight="277.0" prefWidth="587.0">
+                    <columns>
+                      <TableColumn fx:id="titleCol" prefWidth="104.0" text="Nom du livre" />
+                      <TableColumn fx:id="writerCol" prefWidth="82.0" text="Autheur" />
+                        <TableColumn fx:id="publisherCol" prefWidth="66.0" text="Éditeur" />
+                        <TableColumn fx:id="loanDateCol" prefWidth="118.0" text="Date d'emprunt" />
+                        <TableColumn fx:id="returnDateCol" prefWidth="141.0" text="Date de retour maximale" />
+                        <TableColumn fx:id="statusCol" prefWidth="75.0" text="Etat" />
+                    </columns>
+                  </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <VBox prefHeight="58.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="173.0" prefWidth="600.0" />
+            </children>
+        </VBox>
+    </bottom>
+</BorderPane>

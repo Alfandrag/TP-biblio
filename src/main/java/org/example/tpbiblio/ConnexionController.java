@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.tpbiblio.Get_SQL.DatabaseConnexion;
+import org.example.tpbiblio.Get_SQL.DatabaseHelper;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -28,6 +30,7 @@ public class ConnexionController {
     protected void try_login(ActionEvent event) {
         String email = username_input.getText();
         String password = password_input.getText();
+        int userID = DatabaseHelper.getUserId(email, hashing(password));
 
         if (email.isEmpty() || password.isEmpty()) {
             error.setText("Veillez remplir tous les champs");
@@ -39,7 +42,7 @@ public class ConnexionController {
         String hashed_password = hashing(password);
 
         if (checkLogin(email, hashed_password)) {
-            open_hello_page();
+            open_hello_page(userID);
         } else {
             error.setText("Identifiants incorrects");
         }
@@ -62,7 +65,7 @@ public class ConnexionController {
     private boolean checkLogin(String email, String hashed_password) {
         String sql = "SELECT * FROM Users WHERE email = ? AND pssword = ?";
         try (Connection conn = DatabaseConnexion.getConnection();
-            PreparedStatement ppstmt = conn.prepareStatement(sql)) {
+             PreparedStatement ppstmt = conn.prepareStatement(sql)) {
 
             ppstmt.setString(1,email);
             ppstmt.setString(2,hashed_password);
@@ -75,10 +78,12 @@ public class ConnexionController {
         }
     }
 
-    private void open_hello_page() {
+    private void open_hello_page(int userID) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
+            HelloController controller = fxmlLoader.getController();
+            controller.setUserID(userID);
             Stage stage = (Stage) username_input.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
