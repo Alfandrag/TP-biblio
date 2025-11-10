@@ -34,6 +34,8 @@ public class ProfileController {
     private TableColumn<Book_loan, String> returnDateCol;
     @FXML
     private TableColumn<Book_loan, String> statusCol;
+    @FXML
+    private TableColumn<Book_loan, String> loaner;
 
     private Connection connection;
     private int user_ID;
@@ -49,6 +51,8 @@ public class ProfileController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) home_button.getScene().getWindow();
+            HelloController controller = fxmlLoader.getController();
+            controller.setUserID(user_ID);
             stage.setScene(scene);
             stage.show();
             stage.setTitle("Profile");
@@ -69,6 +73,7 @@ public class ProfileController {
         loanDateCol.setCellValueFactory(new PropertyValueFactory<>("date_emprunt"));
         returnDateCol.setCellValueFactory(new PropertyValueFactory<>("date_retour"));
         statusCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        loaner.setCellValueFactory(new PropertyValueFactory<>("loaner"));
 
         Affichage_emprunt.setItems(observableList);
     }

@@ -44,6 +44,7 @@
                         <TableColumn fx:id="loanDateCol" prefWidth="118.0" text="Date d'emprunt" />
                         <TableColumn fx:id="returnDateCol" prefWidth="141.0" text="Date de retour maximale" />
                         <TableColumn fx:id="statusCol" prefWidth="75.0" text="Etat" />
+                        <TableColumn fx:id="loaner" prefWidth="75.0" text="Emprunteur" />
                     </columns>
                   </TableView>
                     </children>

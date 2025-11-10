@@ -46,3 +46,5 @@ login fait
 accueil fait
 création compte 
 
+sudo mariadb -u root -p 
+USE Databases; 
