@@ -25,7 +25,7 @@
                   <Region prefHeight="100.0" prefWidth="9.0" />
                   <ChoiceBox prefWidth="150.0" />
                   <Region prefHeight="19.0" prefWidth="340.0" />
-                  <Button fx:id="profile_b" mnemonicParsing="false" onAction="#profile_press" prefHeight="30.0" prefWidth="88.0" text="Profile" />
+                  <Button fx:id="profile_b" mnemonicParsing="false" onAction="#profile_press" prefHeight="30.0" prefWidth="88.0" text="Emprunts" />
                </children>
             </HBox>
          </children>

@@ -48,3 +48,103 @@ création compte
 
 sudo mariadb -u root -p 
 USE Databases; 
+
+INSERT INTO Users (first_name, last_name, email, pssword, cat) Values
+('admin', 'admmin', 'admin', SHA2('admin',256 ), 3);
+
+dbdiagram.io
+
+excuse.cyber
+
+script creation diagram : 
+
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+
+TABLE Categories {
+    id INT [PRIMARY KEY]
+    cat_name VARCHAR [NOT NULL]
+    loan_time INT [NOT NULL]
+    loan_number INT [NOT NULL]
+}
+
+TABLE Users{
+    id INT [PRIMARY KEY]
+    first_name VARCHAR [NOT NULL]
+    last_name VARCHAR(50) [NOT NULL]
+    email VARCHAR(100) [NOT NULL]
+    pssword VARCHAR(256) [NOT NULL]
+    cat INT
+}
+
+TABLE Writers{
+    id INT [PRIMARY KEY]
+    first_name VARCHAR(50) [NOT NULL]
+    last_name VARCHAR(50) [NOT NULL]
+    birth_date DATE
+}
+
+TABLE Books{
+    id INT [PRIMARY KEY]
+    title VARCHAR(255) [NOT NULL]
+    writer_id INT
+}
+
+TABLE Editions{
+    id INT [PRIMARY KEY]
+    book_id INT
+    edition_year YEAR
+    isbn VARCHAR(20) [UNIQUE]
+    publisher VARCHAR(100)
+    available_copies INT
+}
+
+
+TABLE Book_Categories{
+    id INT [PRIMARY KEY]
+    category VARCHAR(200)
+}
+
+TABLE Log_users{
+    id INT [PRIMARY KEY]
+    user_id INT
+    action VARCHAR(250)
+    action_date TIMESTAMP 
+}
+
+TABLE Log_loans{
+    id INT [PRIMARY KEY]
+    user_id INT
+    book_id INT
+    loan_date TIMESTAMP
+    return_date TIMESTAMP
+}
+
+TABLE Books_cat_link{
+    book_id INT
+    book_cat INT
+}
+
+TABLE Book_writer_link{
+    book_id INT
+    writer_id INT
+}
+
+Ref cat_users: Categories.id > Users.cat
+
+ref writer_book: Writers.id > Book_writer_link.writer_id
+
+ref writer_books_2: Book_writer_link.book_id < Books.id
+
+ref edition_book: Editions.book_id < Books.id
+
+ref book_cat: Books.id > Books_cat_link.book_id
+
+ref book_cat_2: Book_Categories.id > Books_cat_link.book_cat
+
+ref log_loans: Log_loans.user_id < Users.id
+
+ref log_loans_2: Log_loans.book_id < Books.id
+
+ref log_users: Log_users.user_id < Users.id

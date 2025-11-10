@@ -118,7 +118,8 @@ INSERT INTO Users (first_name, last_name, email, pssword, cat) VALUES
 ('Alice', 'Durand', 'alice.durand@example.com', SHA2('password123',256), 1),
 ('Bob', 'Martin', 'bob.martin@example.com', SHA2('password123',256), 1),
 ('Claire', 'Dupuis', 'claire.dupuis@example.com', SHA2('password123',256), 2),
-('David', 'Admin', 'david.admin@example.com', SHA2('admin123',256), 3);
+('David', 'Admin', 'david.admin@example.com', SHA2('admin123',256), 3),
+('admin', 'admmin', 'admin', SHA2('admin',256 ), 3);
 
 -- =========================
 -- 3) Auteurs

@@ -31,6 +31,7 @@ public class ConnexionController {
         String email = username_input.getText();
         String password = password_input.getText();
         int userID = DatabaseHelper.getUserId(email, hashing(password));
+        int user_cat = DatabaseHelper.getUser_cat(email, hashing(password));
 
         if (email.isEmpty() || password.isEmpty()) {
             error.setText("Veillez remplir tous les champs");
@@ -42,7 +43,7 @@ public class ConnexionController {
         String hashed_password = hashing(password);
 
         if (checkLogin(email, hashed_password)) {
-            open_hello_page(userID);
+            open_hello_page(userID, user_cat);
         } else {
             error.setText("Identifiants incorrects");
         }
@@ -78,12 +79,12 @@ public class ConnexionController {
         }
     }
 
-    private void open_hello_page(int userID) {
+    private void open_hello_page(int userID, int user_cat) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             HelloController controller = fxmlLoader.getController();
-            controller.setUserID(userID);
+            controller.setUserID(userID, user_cat);
             Stage stage = (Stage) username_input.getScene().getWindow();
             stage.setScene(scene);
             stage.show();

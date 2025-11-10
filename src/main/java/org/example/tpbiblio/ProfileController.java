@@ -39,10 +39,18 @@ public class ProfileController {
 
     private Connection connection;
     private int user_ID;
+    private int user_cat;
 
-    public void setUserID(int userID) {
+    public void setUserID(int userID, int user_cat) {
         this.user_ID = userID;
-        loadProfile();
+        this.user_cat = user_cat;
+        if (user_cat == 3) {
+            loadProfile(0);
+        }
+        else {
+            loadProfile(user_ID);
+        }
+
     }
 
     @FXML
@@ -52,7 +60,7 @@ public class ProfileController {
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) home_button.getScene().getWindow();
             HelloController controller = fxmlLoader.getController();
-            controller.setUserID(user_ID);
+            controller.setUserID(user_ID, user_cat);
             stage.setScene(scene);
             stage.show();
             stage.setTitle("Profile");
@@ -61,9 +69,9 @@ public class ProfileController {
         }
     }
 
-    private void loadProfile() {
+    private void loadProfile(int ID_user) {
         data_emprunt dao = new data_emprunt();
-        List<Book_loan> book_loanList = dao.get_book_loan(user_ID);
+        List<Book_loan> book_loanList = dao.get_book_loan(ID_user);
         ObservableList<Book_loan> observableList = FXCollections.observableArrayList(book_loanList);
 
         // Lier les colonnes aux attributs de Book_loan

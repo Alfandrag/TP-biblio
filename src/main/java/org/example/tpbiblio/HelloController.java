@@ -43,9 +43,11 @@ public class HelloController {
     private TableColumn<Book_main, Integer> copiesColumn;
 
     private int userID;
+    private int user_cat;
 
-    public void setUserID(int userID) {
+    public void setUserID(int userID, int user_cat) {
         this.userID = userID;
+        this.user_cat = user_cat;
         load_main();
     }
 
@@ -56,7 +58,7 @@ public class HelloController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             ProfileController controller = fxmlLoader.getController();
-            controller.setUserID(userID);
+            controller.setUserID(userID, user_cat);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             //Stage stage = new Stage();
             stage.setScene(new Scene(root1));

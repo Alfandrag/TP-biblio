@@ -34,7 +34,7 @@
     <center>
         <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="584.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="888.0">
                     <children>
                   <TableView fx:id="Affichage_emprunt" prefHeight="277.0" prefWidth="587.0">
                     <columns>
@@ -42,9 +42,9 @@
                       <TableColumn fx:id="writerCol" prefWidth="82.0" text="Autheur" />
                         <TableColumn fx:id="publisherCol" prefWidth="66.0" text="Éditeur" />
                         <TableColumn fx:id="loanDateCol" prefWidth="118.0" text="Date d'emprunt" />
-                        <TableColumn fx:id="returnDateCol" prefWidth="141.0" text="Date de retour maximale" />
-                        <TableColumn fx:id="statusCol" prefWidth="75.0" text="Etat" />
-                        <TableColumn fx:id="loaner" prefWidth="75.0" text="Emprunteur" />
+                        <TableColumn fx:id="returnDateCol" prefWidth="93.0" text="Date de retour maximale" />
+                        <TableColumn fx:id="statusCol" prefWidth="62.0" text="Etat" />
+                        <TableColumn fx:id="loaner" prefWidth="61.0" text="Emprunteur" />
                     </columns>
                   </TableView>
                     </children>

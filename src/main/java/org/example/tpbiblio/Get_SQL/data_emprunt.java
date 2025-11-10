@@ -3,10 +3,7 @@ package org.example.tpbiblio.Get_SQL;
 import org.example.tpbiblio.Get_SQL.DatabaseConnexion;
 import org.example.tpbiblio.entity.Book_loan;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +12,7 @@ public class data_emprunt {
 
     public List<Book_loan> get_book_loan(int userID) {
         List<Book_loan> books = new ArrayList<Book_loan>();
+        System.out.print(userID);
         if (userID != 0) {
             String querry = """
                 
@@ -28,7 +26,7 @@ public class data_emprunt {
                     CASE
                         WHEN l.return_date IS NULL THEN 'Non rendu'
                         ELSE 'Rendu'
-                    END AS etat
+                    END AS etat,
                     u.email as email
                 FROM Log_loans l
                 JOIN Users u ON l.user_id = u.id
@@ -39,10 +37,12 @@ public class data_emprunt {
                 LEFT JOIN Categories c ON u.cat = c.id
                 WHERE u.id = ?;
                 """;
+            System.out.print(querry);
             try (Connection conn = DatabaseConnexion.getConnection();
                  PreparedStatement stmt = conn.prepareStatement(querry)) {
 
                 stmt.setInt(1, userID);
+                stmt.setInt(2, userID);
                 try (ResultSet rs = stmt.executeQuery()) {
                     while (rs.next()) {
                         Book_loan livre = new Book_loan(
@@ -63,7 +63,7 @@ public class data_emprunt {
             }
         }
         else {
-            String querry =
+            String querry2 =
                     """
                 SELECT
                     b.title AS titre,
@@ -75,7 +75,7 @@ public class data_emprunt {
                     CASE
                         WHEN l.return_date IS NULL THEN 'Non rendu'
                         ELSE 'Rendu'
-                    END AS etat
+                    END AS etat,
                     u.email as email
                 FROM Log_loans l
                 JOIN Users u ON l.user_id = u.id
@@ -85,42 +85,30 @@ public class data_emprunt {
                 LEFT JOIN Writers w ON bw.writer_id = w.id
                 LEFT JOIN Categories c ON u.cat = c.id;
                 """;
+            System.out.print(querry2);
                 try (Connection conn = DatabaseConnexion.getConnection();
-                 PreparedStatement stmt = conn.prepareStatement(querry)) {
-        }
-        try (
+                 Statement stmt = conn.createStatement()) {
 
-                Connection conn =
-                DatabaseConnexion.getConnection();
-                    PreparedStatement stmt = conn.
-                        prepareStatement(querry)) {
+                    try (ResultSet rs = stmt.executeQuery(querry2)) {
+                        while (rs.next()) {
+                            Book_loan livre = new Book_loan(
+                                    rs.getString("titre"),
+                                    rs.getString("auteur"),
+                                    rs.getString("date_emprunt"),
+                                    rs.getString("date_retour"),
+                                    rs.getString("etat"),
+                                    rs.getString("editeur"),
+                                    rs.getString("email")
+                            );
+                            books.add(livre);
+                        }
+                    }
 
-            stmt.setInt(
-                                1, userID);
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Book_loan livre = new Book_loan(
-                            rs.
-                                getString("titre"),
-                            rs.getString("auteur"),
-                            rs.getString(
-                        "date_emprunt"),
-                    rs.getString("date_retour"
-                ),
-                            rs.
-                getString("etat"),
-                            rs.getString(
-        "editeur"),
-                            rs.getString("email")
-                    );
-                    books.add(livre);
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            }
         }
+
         return books;
     }
 }
