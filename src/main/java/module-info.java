@@ -9,6 +9,7 @@ module org.example.tpbiblio {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires javafx.graphics;
+    requires javafx.base;
 
     opens org.example.tpbiblio to javafx.fxml;
     exports org.example.tpbiblio;

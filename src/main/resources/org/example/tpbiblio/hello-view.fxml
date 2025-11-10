@@ -36,14 +36,14 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="584.0">
                <children>
-                  <TableView prefHeight="269.0" prefWidth="586.0">
+                  <TableView fx:id="bookTable" prefHeight="269.0" prefWidth="586.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Titre" />
-                      <TableColumn prefWidth="75.0" text="Autheur" />
-                        <TableColumn prefWidth="75.0" text="Editeur" />
-                        <TableColumn prefWidth="132.0" text="Année de parution" />
-                        <TableColumn prefWidth="109.0" text="Genres" />
-                        <TableColumn prefWidth="115.0" text="Nombre de copies" />
+                      <TableColumn fx:id="titreColumn" prefWidth="75.0" text="Titre" />
+                      <TableColumn fx:id="auteurColumn" prefWidth="75.0" text="Autheur" />
+                        <TableColumn fx:id="editeurColumn" prefWidth="75.0" text="Editeur" />
+                        <TableColumn fx:id="anneeColumn" prefWidth="132.0" text="Année de parution" />
+                        <TableColumn fx:id="genresColumn" prefWidth="109.0" text="Genres" />
+                        <TableColumn fx:id="copiesColumn" prefWidth="115.0" text="Nombre de copies" />
                     </columns>
                   </TableView>
                </children>

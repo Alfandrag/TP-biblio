@@ -8,7 +8,7 @@ public class Book_main {
     public String Genres;
     public int nombre_copies;
 
-    public Book_loan(String titre, String auteur, String Editeur, String annee_parution,
+    public Book_main(String titre, String auteur, String Editeur, String annee_parution,
                      String genre, int nombre_copies) {
         this.title = titre;
         this.auteur = auteur;
